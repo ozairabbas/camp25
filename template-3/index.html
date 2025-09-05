@@ -26,19 +26,21 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
-        /* Pushpin effect using a pseudo-element */
+        /* Tape effect using two pseudo-elements */
         .polaroid::before {
             content: '';
             position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-            width: 10px;
-            height: 10px;
-            background-color: #9333ea; /* violet-600 */
-            border-radius: 50%;
+            width: 20px;
+            height: 40px;
+            background: hsla(40, 100%, 80%, 0.4);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             z-index: 10;
+        }
+
+        .polaroid::before {
+            top: -20px;
+            left: 60px;
+            transform: rotate(var(--rotation2));
         }
     </style>
 </head>
@@ -95,10 +97,12 @@
         cardData.forEach(data => {
             // Randomly determine the rotation degree for the polaroid effect
             const rotation = (Math.random() * 8) - 4; // Between -4 and 4 degrees
+            const rotation2 = (Math.random() * 20) - 10; // Between -10 and 10 degrees
 
             const card = document.createElement('div');
             card.className = "polaroid bg-gray-100 rounded-xl shadow-lg p-3 cursor-pointer";
             card.style.setProperty('--rotation', `${rotation}deg`);
+            card.style.setProperty('--rotation2', `${rotation2}deg`);
 
             // Image container for proper aspect ratio
             const imageWrapper = document.createElement('div');
